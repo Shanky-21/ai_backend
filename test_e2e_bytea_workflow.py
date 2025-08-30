@@ -22,6 +22,14 @@ import psycopg
 from psycopg.rows import dict_row
 from datetime import datetime
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+    print("📄 Loaded environment from .env file")
+except ImportError:
+    print("💡 python-dotenv not installed, using system environment variables")
+
 # Add the app directory to Python path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'app'))
 
@@ -74,7 +82,7 @@ class E2ETestRunner:
                 with conn.cursor() as cursor:
                     cursor.execute("""
                         INSERT INTO files (
-                            id, filename, original_name, file_path, files_data, 
+                            id, filename, original_name, file_path, file_data, 
                             mime_type, file_size, status, upload_date
                         )
                         VALUES (%s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP)
@@ -125,15 +133,14 @@ class E2ETestRunner:
                 with conn.cursor() as cursor:
                     cursor.execute("""
                         INSERT INTO processing_jobs (
-                            id, file_id, business_description, job_type, 
+                            id, file_id, job_type, 
                             status, created_at, metadata
                         )
-                        VALUES (%s, %s, %s, %s, %s, CURRENT_TIMESTAMP, %s)
+                        VALUES (%s, %s, %s, %s, CURRENT_TIMESTAMP, %s)
                         RETURNING id;
                     """, (
                         job_id,
                         file_id,
-                        business_description.strip(),
                         'sales_analysis',
                         'not-started',
                         json.dumps({
@@ -171,7 +178,7 @@ class E2ETestRunner:
                         SET status = 'in-progress', 
                             started_at = CURRENT_TIMESTAMP
                         WHERE id = %s
-                        RETURNING id, file_id, business_description, job_type, metadata;
+                        RETURNING id, file_id, job_type, metadata;
                     """, (job_id,))
                     
                     job_data = cursor.fetchone()
@@ -189,7 +196,7 @@ class E2ETestRunner:
             
             # Log file object details
             for file_obj in file_objects:
-                has_bytea = bool(file_obj.get('files_data'))
+                has_bytea = bool(file_obj.get('file_data'))
                 has_path = bool(file_obj.get('file_path'))
                 filename = file_obj.get('original_name', 'unknown')
                 file_size = file_obj.get('file_size', 0)
@@ -197,7 +204,7 @@ class E2ETestRunner:
             
             # Step 3: Run the AI workflow
             logger.info("🤖 Running AI workflow with file objects...")
-            result = run_complete_workflow(file_objects, job_data['business_description'])
+            result = run_complete_workflow(file_objects, job_data['job_type'])
             
             # Step 4: Update job status and save results
             if result['status'] == 'success':
@@ -314,7 +321,7 @@ class E2ETestRunner:
             verification_results = {
                 'status': 'success',
                 'file_id': file_id,
-                'has_bytea_data': bool(file_obj.get('files_data')),
+                'has_bytea_data': bool(file_obj.get('file_data')),
                 'has_file_path': bool(file_obj.get('file_path')),
                 'file_size': file_obj.get('file_size', 0),
                 'dataframe_shape': df.shape,
@@ -419,7 +426,8 @@ class E2ETestRunner:
         
         finally:
             # Always cleanup
-            self.cleanup_test_data()
+            # self.cleanup_test_data()
+            logger.info("not cleaning up test data")
         
         # Results summary
         logger.info("=" * 70)
@@ -459,19 +467,63 @@ def check_prerequisites() -> bool:
     """Check if prerequisites are met for testing."""
     logger.info("🔧 Checking prerequisites...")
     
+    # Check environment variables first
+    logger.info("🔧 Environment Variables Check:")
+    vars_to_check = [
+        'DATABASE_URL',
+        'POSTGRES_URL', 
+        'AZURE_OPENAI_API_KEY',
+        'AZURE_OPENAI_ENDPOINT'
+    ]
+    
+    env_vars_found = {}
+    for var in vars_to_check:
+        value = os.getenv(var)
+        if value:
+            if 'KEY' in var or 'PASSWORD' in var:
+                logger.info(f"   {var}: ***{value[-4:] if len(value) > 4 else '***'}")
+            else:
+                logger.info(f"   {var}: {value[:50]}{'...' if len(value) > 50 else ''}")
+            env_vars_found[var] = True
+        else:
+            logger.info(f"   {var}: ❌ NOT SET")
+            env_vars_found[var] = False
+    
     # Check database connection
     try:
         database_url = os.getenv('DATABASE_URL') or os.getenv('POSTGRES_URL')
         if not database_url:
             logger.error("❌ DATABASE_URL or POSTGRES_URL environment variable required")
+            logger.info("💡 Create a .env file with your database URL:")
+            logger.info("   DATABASE_URL=postgresql://user:password@host:port/database")
             return False
         
+        logger.info("🔌 Testing database connection...")
         conn = psycopg.connect(database_url, row_factory=dict_row)
+        
+        # Test basic query
+        with conn.cursor() as cursor:
+            cursor.execute("SELECT version();")
+            version = cursor.fetchone()
+            logger.info(f"✅ Database connected: {version['version'][:50]}...")
+        
         conn.close()
         logger.info("✅ Database connection: OK")
         
     except Exception as e:
         logger.error(f"❌ Database connection failed: {e}")
+        
+        # Provide helpful error messages
+        error_str = str(e).lower()
+        if "getaddrinfo failed" in error_str:
+            logger.info("💡 DNS resolution failed - check hostname in DATABASE_URL")
+        elif "authentication failed" in error_str:
+            logger.info("💡 Authentication failed - check username/password")
+        elif "does not exist" in error_str:
+            logger.info("💡 Database does not exist - check database name")
+        elif "connection refused" in error_str:
+            logger.info("💡 Connection refused - check host/port")
+        
         return False
     
     # Check required tables

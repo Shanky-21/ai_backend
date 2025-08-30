@@ -9,7 +9,7 @@ from typing import List, Dict, Any, Optional
 import json
 from datetime import datetime
 
-from .utils import setup_logger
+from .utils import setup_logger, safe_json_dumps
 
 logger = setup_logger(__name__)
 
@@ -42,8 +42,7 @@ class DatabaseManager:
                     cursor.execute("""
                         UPDATE processing_jobs 
                         SET status = 'processing', 
-                            started_at = CURRENT_TIMESTAMP,
-                            updated_at = CURRENT_TIMESTAMP
+                            started_at = CURRENT_TIMESTAMP
                         WHERE id = (
                             SELECT id FROM processing_jobs 
                             WHERE status = 'pending' 
@@ -51,7 +50,7 @@ class DatabaseManager:
                             LIMIT 1 
                             FOR UPDATE SKIP LOCKED
                         )
-                        RETURNING id, file_id, job_type, metadata, business_description, created_at;
+                        RETURNING id, file_id, job_type, metadata, created_at;
                     """)
                     
                     result = cursor.fetchone()
@@ -59,10 +58,6 @@ class DatabaseManager:
                         # Adapt to our expected format
                         adapted_job = {
                             'job_id': str(result['id']),
-                            'business_description': (
-                                result.get('business_description') or 
-                                result.get('job_type', 'General business analysis')
-                            ),
                             'file_ids': [str(result['file_id'])] if result['file_id'] else [],
                             'priority': 1,  # Default priority
                             'metadata': result.get('metadata', {}),
@@ -82,7 +77,7 @@ class DatabaseManager:
             with self.get_connection() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute("""
-                        SELECT id, filename, original_name, file_path, files_data, mime_type, file_size
+                        SELECT id, filename, original_name, file_path, file_data, mime_type, file_size
                         FROM files 
                         WHERE id = ANY(%s) AND status = 'uploaded'
                     """, (file_ids,))
@@ -96,7 +91,7 @@ class DatabaseManager:
                             'filename': row['filename'],
                             'original_name': row['original_name'],
                             'file_path': row['file_path'],  # Keep for backward compatibility
-                            'files_data': row['files_data'],  # New bytea data
+                            'file_data': row['file_data'],  # New bytea data
                             'mime_type': row['mime_type'],
                             'file_size': row['file_size']
                         }
@@ -116,13 +111,13 @@ class DatabaseManager:
             file_paths = []
             
             for file_obj in file_objects:
-                # If files_data exists, we'll need to create temporary files
-                if file_obj['files_data']:
+                # If file_data exists, we'll need to create temporary files
+                if file_obj['file_data']:
                     # For now, return the original file path if it exists
                     if file_obj['file_path']:
                         file_paths.append(file_obj['file_path'])
                 else:
-                    # Fallback to file_path if files_data is not available
+                    # Fallback to file_path if file_data is not available
                     if file_obj['file_path']:
                         file_paths.append(file_obj['file_path'])
                     
@@ -143,7 +138,6 @@ class DatabaseManager:
                             UPDATE processing_jobs 
                             SET status = %s, 
                                 completed_at = CURRENT_TIMESTAMP, 
-                                updated_at = CURRENT_TIMESTAMP,
                                 error_message = %s
                             WHERE id = %s
                         """, (status, error_message, job_id))
@@ -152,16 +146,14 @@ class DatabaseManager:
                             UPDATE processing_jobs 
                             SET status = %s, 
                                 error_message = %s, 
-                                retry_count = retry_count + 1,
-                                updated_at = CURRENT_TIMESTAMP
+                                retry_count = retry_count + 1
                             WHERE id = %s
                         """, (status, error_message, job_id))
                     else:
                         cursor.execute("""
                             UPDATE processing_jobs 
                             SET status = %s, 
-                                error_message = %s,
-                                updated_at = CURRENT_TIMESTAMP
+                                error_message = %s
                             WHERE id = %s
                         """, (status, error_message, job_id))
                     
@@ -237,7 +229,7 @@ class DatabaseManager:
                         job_id,
                         file_id,
                         insight_type_summary,
-                        json.dumps({
+                        safe_json_dumps({
                             'final_insights': insights,
                             'summary': {
                                 'total_insights': len(insights),
@@ -246,7 +238,7 @@ class DatabaseManager:
                             }
                         }),
                         overall_confidence,
-                        json.dumps(metadata)
+                        safe_json_dumps(metadata)
                     ))
                     
                     logger.info(f"💾 Saved complete analysis with {len(insights)} insights for job {job_id} (confidence: {overall_confidence:.2f})")

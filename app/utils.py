@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import os
 import json
 import logging
@@ -38,9 +39,9 @@ def load_dataframe_from_file_object(file_obj: Dict[str, Any]) -> pd.DataFrame:
     """Load DataFrame from file object (supports both bytea data and file path)."""
     try:
         # Prioritize bytea data if available
-        if file_obj.get('files_data'):
+        if file_obj.get('file_data'):
             return load_dataframe_from_bytes(
-                file_obj['files_data'], 
+                file_obj['file_data'], 
                 file_obj.get('original_name', file_obj.get('filename', 'unknown.csv'))
             )
         # Fallback to file path
@@ -86,9 +87,9 @@ def file_objects_to_temp_paths(file_objects: List[Dict[str, Any]]) -> List[str]:
     for file_obj in file_objects:
         try:
             # If bytea data is available, create temp file
-            if file_obj.get('files_data'):
+            if file_obj.get('file_data'):
                 filename = file_obj.get('original_name', file_obj.get('filename', 'unknown.csv'))
-                temp_path = create_temp_file_from_bytes(file_obj['files_data'], filename)
+                temp_path = create_temp_file_from_bytes(file_obj['file_data'], filename)
                 temp_paths.append(temp_path)
             # Fallback to existing file path
             elif file_obj.get('file_path'):
@@ -154,3 +155,49 @@ def setup_logger(name: str) -> logging.Logger:
         logger.addHandler(handler)
         logger.setLevel(logging.DEBUG)
     return logger
+
+def convert_numpy_types(obj: Any) -> Any:
+    """
+    Convert NumPy types to native Python types for JSON serialization.
+    
+    This function recursively converts NumPy int64, float64, bool_, etc.
+    to their native Python equivalents so they can be JSON serialized.
+    
+    Args:
+        obj: The object to convert (can be dict, list, or any value)
+        
+    Returns:
+        The object with all NumPy types converted to native Python types
+    """
+    if isinstance(obj, dict):
+        return {key: convert_numpy_types(value) for key, value in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy_types(item) for item in obj]
+    elif isinstance(obj, tuple):
+        return tuple(convert_numpy_types(item) for item in obj)
+    elif isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, np.bool_):
+        return bool(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()  # Convert numpy arrays to lists
+    elif pd.isna(obj):
+        return None  # Convert pandas NaN to None
+    else:
+        return obj
+
+def safe_json_dumps(obj: Any, **kwargs) -> str:
+    """
+    Safely serialize an object to JSON, converting NumPy types first.
+    
+    Args:
+        obj: The object to serialize
+        **kwargs: Additional arguments to pass to json.dumps
+        
+    Returns:
+        JSON string representation of the object
+    """
+    converted_obj = convert_numpy_types(obj)
+    return json.dumps(converted_obj, **kwargs)
