@@ -328,7 +328,7 @@ class JobCronProcessor:
             
             # Log file types for debugging
             for file_obj in file_objects:
-                has_bytea = bool(file_obj.get('files_data'))
+                has_bytea = bool(file_obj.get('file_data'))
                 has_path = bool(file_obj.get('file_path'))
                 filename = file_obj.get('original_name', 'unknown')
                 logger.info(f"   📄 {filename}: bytea={has_bytea}, path={has_path}")
