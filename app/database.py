@@ -76,22 +76,58 @@ class DatabaseManager:
             logger.error(f"❌ Error getting pending job: {e}")
             return None
     
-    def get_file_paths(self, file_ids: List[str]) -> List[str]:
-        """Get file paths from file IDs."""
+    def get_file_data(self, file_ids: List[str]) -> List[Dict[str, Any]]:
+        """Get file data and metadata from file IDs."""
         try:
             with self.get_connection() as conn:
                 with conn.cursor() as cursor:
                     cursor.execute("""
-                        SELECT id, file_path, original_name 
+                        SELECT id, filename, original_name, file_path, files_data, mime_type, file_size
                         FROM files 
                         WHERE id = ANY(%s) AND status = 'uploaded'
                     """, (file_ids,))
                     
                     results = cursor.fetchall()
-                    file_paths = [row['file_path'] for row in results]
+                    file_objects = []
                     
-                    logger.info(f"📁 Found {len(file_paths)} files for IDs: {file_ids}")
-                    return file_paths
+                    for row in results:
+                        file_obj = {
+                            'id': str(row['id']),
+                            'filename': row['filename'],
+                            'original_name': row['original_name'],
+                            'file_path': row['file_path'],  # Keep for backward compatibility
+                            'files_data': row['files_data'],  # New bytea data
+                            'mime_type': row['mime_type'],
+                            'file_size': row['file_size']
+                        }
+                        file_objects.append(file_obj)
+                    
+                    logger.info(f"📁 Found {len(file_objects)} files for IDs: {file_ids}")
+                    return file_objects
+                    
+        except Exception as e:
+            logger.error(f"❌ Error getting file data: {e}")
+            return []
+
+    def get_file_paths(self, file_ids: List[str]) -> List[str]:
+        """Get file paths from file IDs (legacy method for backward compatibility)."""
+        try:
+            file_objects = self.get_file_data(file_ids)
+            file_paths = []
+            
+            for file_obj in file_objects:
+                # If files_data exists, we'll need to create temporary files
+                if file_obj['files_data']:
+                    # For now, return the original file path if it exists
+                    if file_obj['file_path']:
+                        file_paths.append(file_obj['file_path'])
+                else:
+                    # Fallback to file_path if files_data is not available
+                    if file_obj['file_path']:
+                        file_paths.append(file_obj['file_path'])
+                    
+            logger.info(f"📁 Found {len(file_paths)} file paths for IDs: {file_ids}")
+            return file_paths
                     
         except Exception as e:
             logger.error(f"❌ Error getting file paths: {e}")
