@@ -151,9 +151,25 @@ class JobCronProcessor:
             logger.error(f"❌ Error getting pending job: {e}")
             return None
     
+    def get_file_data_objects(self, file_ids: list[str]) -> list[Dict[str, Any]]:
+        """
+        Get file data objects from file IDs (supports bytea data).
+        
+        Args:
+            file_ids: List of file ID strings
+            
+        Returns:
+            List of file data objects
+        """
+        try:
+            return self.db.get_file_data(file_ids)
+        except Exception as e:
+            logger.error(f"❌ Error getting file data objects: {e}")
+            return []
+
     def get_file_paths(self, file_ids: list[str]) -> list[str]:
         """
-        Get file paths from file IDs.
+        Get file paths from file IDs (legacy method for backward compatibility).
         
         Args:
             file_ids: List of file ID strings
@@ -162,20 +178,7 @@ class JobCronProcessor:
             List of file paths
         """
         try:
-            with self.db.get_connection() as conn:
-                with conn.cursor() as cursor:
-                    cursor.execute("""
-                        SELECT id, file_path, original_name 
-                        FROM files 
-                        WHERE id = ANY(%s) AND status = 'uploaded'
-                    """, (file_ids,))
-                    
-                    results = cursor.fetchall()
-                    file_paths = [row['file_path'] for row in results if row['file_path']]
-                    
-                    logger.info(f"📁 Found {len(file_paths)} files for IDs: {file_ids}")
-                    return file_paths
-                    
+            return self.db.get_file_paths(file_ids)
         except Exception as e:
             logger.error(f"❌ Error getting file paths: {e}")
             return []
@@ -312,19 +315,26 @@ class JobCronProcessor:
         logger.info(f"   Files: {len(file_ids)} file(s)")
         
         try:
-            # Get file paths from file IDs
-            file_paths = self.get_file_paths(file_ids)
+            # Get file data objects from file IDs (supports bytea data)
+            file_objects = self.get_file_data_objects(file_ids)
             
-            if not file_paths:
+            if not file_objects:
                 error_msg = f"No valid files found for IDs: {file_ids}"
                 logger.error(f"❌ {error_msg}")
                 self.update_job_status(job_id, 'failed', error_msg)
                 return False
             
-            logger.info(f"📁 Processing {len(file_paths)} files")
+            logger.info(f"📁 Processing {len(file_objects)} file objects")
             
-            # Run the AI workflow
-            result = run_complete_workflow(file_paths, business_description)
+            # Log file types for debugging
+            for file_obj in file_objects:
+                has_bytea = bool(file_obj.get('files_data'))
+                has_path = bool(file_obj.get('file_path'))
+                filename = file_obj.get('original_name', 'unknown')
+                logger.info(f"   📄 {filename}: bytea={has_bytea}, path={has_path}")
+            
+            # Run the AI workflow with file objects
+            result = run_complete_workflow(file_objects, business_description)
             
             if result['status'] == 'success':
                 # Save results to database
