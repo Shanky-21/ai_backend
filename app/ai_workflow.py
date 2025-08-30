@@ -1,7 +1,7 @@
 from langgraph.graph import StateGraph, END
 from typing import List, Dict
 
-from .types import InsightState
+from .workflow_types import InsightState
 from .workflow_nodes import (
     analyze_data_node,
     understand_business_node,
@@ -56,7 +56,8 @@ def run_complete_workflow(files: List[str], business_description: str) -> Dict:
     
     try:
         logger.info(f"Processing {len(files)} files...")
-        result = ai_workflow_app.invoke(initial_state)
+        result = ai_workflow_app.inv
+        oke(initial_state)
         
         logger.info(f"✅ Workflow completed successfully")
         logger.info(f"Generated {len(result.get('final_insights', []))} insights")

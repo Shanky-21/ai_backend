@@ -1,0 +1,5 @@
+2025-08-30 12:25:31,474 - app.run_server - INFO - 🚀 Starting Business Insights AI Server...
+2025-08-30 12:25:31,474 - app.run_server - ERROR - ❌ Environment validation failed
+2025-08-30 12:25:31,474 - app.run_server - INFO - 💡 Make sure to set AZURE_OPENAI_API_KEY and AZURE_OPENAI_ENDPOINT in your environment
+📄 Loaded environment from .env file
+⚠️  AZURE_OPENAI_API_KEY not set

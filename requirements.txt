@@ -24,3 +24,15 @@ uvicorn==0.35.0
 uvloop==0.21.0
 watchfiles==1.1.0
 websockets==15.0.1
+
+# AI/ML dependencies for Business Insights AI
+langgraph>=0.6.6
+langchain-openai>=0.3.32
+langsmith>=0.4.21
+pandas>=2.3.2
+numpy>=2.3.2
+matplotlib>=3.10.6
+seaborn>=0.13.2
+openpyxl>=3.1.5
+python-multipart>=0.0.20
+requests>=2.32.5
