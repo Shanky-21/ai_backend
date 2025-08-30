@@ -71,6 +71,37 @@ def create_data_summary(file_metadata: Dict[str, Any]) -> str:
             summary += f"- Columns: {', '.join(metadata['columns'][:5])}\n\n"
     return summary
 
+def calculate_insight_confidence(analysis_results: Dict[str, Any], business_insights: Dict[str, Any]) -> float:
+    """Calculate confidence score based on analysis and insight quality."""
+    confidence = 0.5  # Base confidence
+    
+    # Boost confidence based on analysis quality
+    if analysis_results.get("metrics") and len(analysis_results["metrics"]) > 0:
+        confidence += 0.15  # Has meaningful metrics
+    
+    if analysis_results.get("key_findings") and len(analysis_results["key_findings"]) > 0:
+        confidence += 0.1   # Has findings
+    
+    if analysis_results.get("visualizations") and len(analysis_results["visualizations"]) > 0:
+        confidence += 0.1   # Has visualizations
+    
+    if analysis_results.get("recommendations") and len(analysis_results["recommendations"]) > 0:
+        confidence += 0.1   # Has recommendations
+    
+    # Boost confidence based on business insight quality
+    if business_insights.get("executive_summary") and len(business_insights["executive_summary"]) > 50:
+        confidence += 0.05  # Has substantial summary
+    
+    if business_insights.get("next_steps") and len(business_insights["next_steps"]) > 0:
+        confidence += 0.05  # Has actionable next steps
+    
+    # Penalize for errors
+    if "error" in analysis_results:
+        confidence -= 0.3   # Significant penalty for errors
+    
+    # Ensure confidence is between 0.1 and 0.95
+    return max(0.1, min(0.95, confidence))
+
 @traceable
 def understand_business_node(state: InsightState) -> InsightState:
     """Understand business and generate help suggestions."""
@@ -228,15 +259,41 @@ def generate_insights_node(state: InsightState) -> InsightState:
             logger.info(f"📋 Creating business summary for {title}")
             business_insights = generate_insight_summary(suggestion, analysis_results, llm)
             
-            # Create final insight structure
+            # Calculate confidence score based on analysis quality
+            confidence_score = calculate_insight_confidence(analysis_results, business_insights)
+            
+            # Create final insight structure optimized for database storage
             insight = {
                 "title": title,
+                "description": suggestion.get("description", ""),
                 "priority": suggestion["priority"],
+                "analysis_type": suggestion.get("type", "business_analysis"),
                 "files_used": [os.path.basename(f) for f in relevant_files],
-                "analysis_results": analysis_results,
-                "insights": business_insights,
+                "data_sources": relevant_files,
+                "confidence": confidence_score,
+                "confidence_score": confidence_score,  # Alias for database compatibility
+                
+                # Core analysis results
+                "metrics": analysis_results.get("metrics", {}),
+                "key_findings": analysis_results.get("key_findings", []),
+                "recommendations": analysis_results.get("recommendations", []),
+                "visualizations": analysis_results.get("visualizations", []),
+                
+                # Business insights
+                "executive_summary": business_insights.get("executive_summary", ""),
+                "business_findings": business_insights.get("key_findings", []),
+                "business_recommendations": business_insights.get("recommendations", []),
+                "next_steps": business_insights.get("next_steps", []),
+                
+                # Metadata for database storage
                 "generated_at": datetime.now().isoformat(),
-                "status": "success" if "error" not in analysis_results else "error"
+                "status": "success" if "error" not in analysis_results else "error",
+                "error_message": analysis_results.get("error") if "error" in analysis_results else None,
+                "execution_time": analysis_results.get("execution_time"),
+                
+                # Legacy fields for backward compatibility
+                "analysis_results": analysis_results,
+                "insights": business_insights
             }
             
             final_insights.append(insight)
