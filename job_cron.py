@@ -235,23 +235,8 @@ class JobCronProcessor:
             results: Analysis results dictionary
         """
         try:
-            with self.db.get_connection() as conn:
-                with conn.cursor() as cursor:
-                    # Save each insight separately
-                    insights = results.get('final_insights', [])
-                    
-                    for insight in insights:
-                        cursor.execute("""
-                            INSERT INTO insights (job_id, insight_type, content, confidence_score, created_at)
-                            VALUES (%s, %s, %s, %s, CURRENT_TIMESTAMP)
-                        """, (
-                            job_id,
-                            insight.get('title', 'General Analysis'),
-                            insight,  # Store full insight object as JSON
-                            insight.get('confidence', 0.8)  # Default confidence
-                        ))
-                    
-                    logger.info(f"💾 Saved {len(insights)} insights for job {job_id}")
+            # Use the enhanced database manager method
+            self.db.save_analysis_results(job_id, results)
                     
         except Exception as e:
             logger.error(f"❌ Error saving results: {e}")
