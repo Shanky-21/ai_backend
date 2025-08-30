@@ -1,0 +1,47 @@
+[Unit]
+Description=Business Insights AI - Job Processor Cron
+Documentation=https://github.com/your-org/business-insights-ai
+After=network.target postgresql.service
+Wants=postgresql.service
+StartLimitIntervalSec=60
+StartLimitBurst=3
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/home/shashank/projects/hackathon/ai_backend
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+Environment=PYTHONPATH=/home/shashank/projects/hackathon/ai_backend
+EnvironmentFile=-/etc/environment
+EnvironmentFile=-/home/shashank/projects/hackathon/ai_backend/.env
+
+# Main command - runs the cron job processor
+ExecStart=/usr/bin/python3 /home/shashank/projects/hackathon/ai_backend/job_cron.py --interval 30 --daemon
+
+# Restart policy
+Restart=always
+RestartSec=10
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+# Resource limits
+LimitNOFILE=65536
+LimitNPROC=4096
+
+# Security settings
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/home/shashank/projects/hackathon/ai_backend/temp
+ReadWritePaths=/home/shashank/projects/hackathon/ai_backend/logs
+ReadWritePaths=/tmp
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=job-cron
+
+[Install]
+WantedBy=multi-user.target

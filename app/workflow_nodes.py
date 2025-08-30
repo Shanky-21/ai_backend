@@ -6,7 +6,7 @@ from langsmith import traceable
 import json
 from datetime import datetime
 
-from .types import InsightState
+from .workflow_types import InsightState
 from .utils import load_dataframe, format_dataframe_summary, setup_logger, safe_json_parse
 from .config import (
     AZURE_OPENAI_API_KEY, 
@@ -20,13 +20,19 @@ from .config import (
 logger = setup_logger(__name__)
 
 # Initialize Azure OpenAI LLM
-llm = AzureChatOpenAI(
-    deployment_name=AZURE_DEPLOYMENT_NAME,
-    openai_api_version=AZURE_OPENAI_API_VERSION,
-    azure_endpoint=AZURE_OPENAI_ENDPOINT,
-    openai_api_key=AZURE_OPENAI_API_KEY,
-    temperature=LLM_TEMPERATURE
-)
+try:
+    llm = AzureChatOpenAI(
+        deployment_name=AZURE_DEPLOYMENT_NAME,
+        openai_api_version=AZURE_OPENAI_API_VERSION,
+        azure_endpoint=AZURE_OPENAI_ENDPOINT,
+        openai_api_key=AZURE_OPENAI_API_KEY,
+        temperature=LLM_TEMPERATURE
+    )
+    logger.info("✅ Azure OpenAI LLM initialized successfully")
+except Exception as e:
+    logger.warning(f"⚠️  Azure OpenAI initialization failed: {e}")
+    # Create a placeholder that will fail gracefully if used
+    llm = None
 
 def analyze_data_node(state: InsightState) -> InsightState:
     """Extract metadata and samples from uploaded files."""
@@ -69,6 +75,15 @@ def create_data_summary(file_metadata: Dict[str, Any]) -> str:
 def understand_business_node(state: InsightState) -> InsightState:
     """Understand business and generate help suggestions."""
     logger.info("🧠 Understanding business context...")
+    
+    if llm is None:
+        logger.error("❌ LLM not initialized - cannot understand business context")
+        return {
+            **state,
+            "business_understanding": "LLM not available",
+            "help_suggestions": [{"title": "General Analysis", "description": "Basic data insights", "priority": "medium"}],
+            "current_step": "business_understanding_error"
+        }
     
     try:
         data_summary = create_data_summary(state["file_metadata"])

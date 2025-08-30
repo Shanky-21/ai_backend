@@ -27,7 +27,25 @@ async def startup_event():
     logger.info("🚀 Starting Business Insights AI...")
     if not validate_environment():
         logger.warning("⚠️  Some environment variables missing")
+    
+    # Job processing is now handled by separate cron system
+    database_url = os.getenv('DATABASE_URL') or os.getenv('POSTGRES_URL')
+    if database_url:
+        logger.info("💡 Database configured - job processing handled by separate cron system")
+        logger.info("🔧 Start job processor with: ./start_job_cron.sh dev")
+        logger.info("🔧 Or run directly: python job_cron.py --interval 10")
+    else:
+        logger.info("💡 No database configured - job processing disabled")
+        logger.info("🔧 Configure DATABASE_URL to enable job processing")
+    
     logger.info("✅ Server startup complete")
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Cleanup on shutdown."""
+    logger.info("⏹️  Shutting down Business Insights AI...")
+    logger.info("💡 Job processing runs independently via cron system")
+    logger.info("👋 Shutdown complete")
 
 @app.get("/health")
 async def health_check():
