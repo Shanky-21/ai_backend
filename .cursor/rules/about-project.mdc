@@ -1,0 +1,109 @@
+---
+alwaysApply: true
+---
+
+PROJECT: Business Insights AI - LangGraph Workflow System
+
+DESCRIPTION:
+This is a FastAPI-based AI application that analyzes business data files and provides actionable insights. The system uses LangGraph for workflow orchestration and LangSmith for monitoring.
+
+CORE WORKFLOW:
+1. User uploads CSV/Excel files + business description
+2. AI analyzes data structure and metadata
+3. AI understands business context and suggests help areas
+4. AI maps files to specific insights
+5. AI generates Python analysis code and executes it safely
+6. Returns structured business insights with visualizations
+
+TECH STACK:
+- FastAPI (REST API)
+- LangGraph (workflow orchestration) 
+- LangSmith (LLM monitoring)
+- OpenAI GPT-3.5-turbo (LLM)
+- Pandas (data analysis)
+- Matplotlib/Seaborn (visualizations)
+
+PROJECT RULES:
+1. Use type hints everywhere (typing, typing_extensions)
+2. Add comprehensive docstrings to all functions
+3. Include proper error handling with try/catch blocks
+4. Use @traceable decorator for all LLM-related functions
+5. Add logging statements for debugging (logger.info, logger.error)
+6. Create modular, single-responsibility functions
+7. Use TypedDict for structured data passing
+8. Follow Python naming conventions (snake_case)
+9. Add TODO comments for future improvements
+10. Keep functions under 50 lines when possible
+11. Always validate LLM JSON responses with fallbacks
+12. Use environment variables for API keys
+13. Clean up temporary files in finally blocks
+14. Return structured error responses, never raise unhandled exceptions
+15. Add progress indicators (print statements) for long operations
+
+SAFETY REQUIREMENTS:
+- Restrict code execution environment (no file system/network access)
+- Validate uploaded file types (CSV, Excel only)
+- Timeout protection for code execution
+- Sanitize all LLM-generated code before execution
+
+CODE STYLE:
+- Use f-strings for formatting
+- Prefer dataclasses/TypedDict over plain dicts
+- Use context managers for file operations
+- Import modules at top, functions/classes at bottom of imports
+- Group imports: standard library, third party, local imports
+- Use meaningful variable names (no x, y, temp unless in loops)
+
+This is a hackathon project prioritizing speed and functionality over perfect architecture.PROJECT: Business Insights AI - LangGraph Workflow System
+
+DESCRIPTION:
+This is a FastAPI-based AI application that analyzes business data files and provides actionable insights. The system uses LangGraph for workflow orchestration and LangSmith for monitoring.
+
+CORE WORKFLOW:
+1. User uploads CSV/Excel files + business description
+2. AI analyzes data structure and metadata
+3. AI understands business context and suggests help areas
+4. AI maps files to specific insights
+5. AI generates Python analysis code and executes it safely
+6. Returns structured business insights with visualizations
+
+TECH STACK:
+- FastAPI (REST API)
+- LangGraph (workflow orchestration) 
+- LangSmith (LLM monitoring)
+- OpenAI GPT-3.5-turbo (LLM)
+- Pandas (data analysis)
+- Matplotlib/Seaborn (visualizations)
+
+PROJECT RULES:
+1. Use type hints everywhere (typing, typing_extensions)
+2. Add comprehensive docstrings to all functions
+3. Include proper error handling with try/catch blocks
+4. Use @traceable decorator for all LLM-related functions
+5. Add logging statements for debugging (logger.info, logger.error)
+6. Create modular, single-responsibility functions
+7. Use TypedDict for structured data passing
+8. Follow Python naming conventions (snake_case)
+9. Add TODO comments for future improvements
+10. Keep functions under 50 lines when possible
+11. Always validate LLM JSON responses with fallbacks
+12. Use environment variables for API keys
+13. Clean up temporary files in finally blocks
+14. Return structured error responses, never raise unhandled exceptions
+15. Add progress indicators (print statements) for long operations
+
+SAFETY REQUIREMENTS:
+- Restrict code execution environment (no file system/network access)
+- Validate uploaded file types (CSV, Excel only)
+- Timeout protection for code execution
+- Sanitize all LLM-generated code before execution
+
+CODE STYLE:
+- Use f-strings for formatting
+- Prefer dataclasses/TypedDict over plain dicts
+- Use context managers for file operations
+- Import modules at top, functions/classes at bottom of imports
+- Group imports: standard library, third party, local imports
+- Use meaningful variable names (no x, y, temp unless in loops)
+
+This is a hackathon project prioritizing speed and functionality over perfect architecture.

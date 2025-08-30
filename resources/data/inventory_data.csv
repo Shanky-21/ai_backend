@@ -1,0 +1,101 @@
+product_id,product_name,product_category,current_stock,reorder_point,max_stock_level,supplier,cost_price,selling_price,stock_in_30days,stock_out_30days,last_updated,stock_status\
+PROD_000001,Wrench Set,Automotive,110,24,1125,Supplier A,311.68,904.93,156,56,2025-08-19,In Stock\
+PROD_000002,Face Cream,Beauty,650,39,1417,Supplier C,326.37,489.02,9,77,2025-08-28,In Stock\
+PROD_000003,Mystery Novel,Books,99,25,1249,Supplier B,197.38,381.09,178,138,2025-08-06,In Stock\
+PROD_000004,Wellness Book,Books,760,19,1234,Supplier A,417.68,980.13,8,94,2025-08-21,In Stock\
+PROD_000005,Running Shoes,Clothing,455,25,1380,Supplier C,54.18,133.59,165,91,2025-08-12,In Stock\
+PROD_000006,iPad Air,Electronics,282,22,582,Global Supply Co,50.38,83.66,152,5,2025-08-09,In Stock\
+PROD_000007,AirPods Pro,Electronics,249,18,1455,Supplier B,38.96,101.33,150,55,2025-08-23,In Stock\
+PROD_000008,Floor Mats,Automotive,336,19,391,Supplier C,429.91,664.63,138,64,2025-08-25,In Stock\
+PROD_000009,Floor Mats,Automotive,112,11,431,Supplier A,182.33,481.41,82,4,2025-08-11,In Stock\
+PROD_000010,Summer Dress,Clothing,53,18,965,Prime Distributors,61.26,86.26,199,92,2025-08-15,In Stock\
+PROD_000011,Protein Powder,Sports,111,38,1192,Supplier B,472.98,649.74,168,133,2025-08-04,In Stock\
+PROD_000012,Garden Rake,Home & Garden,658,11,770,Global Supply Co,424.41,859.29,125,113,2025-08-26,In Stock\
+PROD_000013,iPhone 15,Electronics,329,48,682,Supplier A,67.46,159.3,140,83,2025-08-11,In Stock\
+PROD_000014,Wellness Book,Books,543,28,1057,Prime Distributors,304.69,447.47,29,141,2025-08-07,In Stock\
+PROD_000015,Lipstick,Beauty,440,38,1399,Supplier B,209.84,567.96,106,24,2025-08-17,In Stock\
+PROD_000016,Garden Rake,Home & Garden,320,26,1136,Supplier B,344.98,726.62,21,23,2025-08-27,In Stock\
+PROD_000017,Mystery Novel,Books,762,33,945,Prime Distributors,34.69,101.51,84,31,2025-08-12,In Stock\
+PROD_000018,Math Textbook,Books,894,37,996,Supplier C,302.2,573.51,129,54,2025-08-11,In Stock\
+PROD_000019,Leather Belt,Clothing,493,24,1410,Supplier A,178.31,400.42,195,71,2025-08-26,In Stock\
+PROD_000020,Gym Wear,Sports,826,37,1450,Prime Distributors,308.72,738.64,155,68,2025-08-29,In Stock\
+PROD_000021,MacBook Pro,Electronics,279,29,1024,Supplier C,8.02,22.29,168,102,2025-08-11,In Stock\
+PROD_000022,MacBook Pro,Electronics,758,50,839,Supplier A,374.33,623.53,116,87,2025-08-16,In Stock\
+PROD_000023,Summer Dress,Clothing,319,30,542,Supplier A,82.01,211.79,172,20,2025-08-28,In Stock\
+PROD_000024,Garden Rake,Home & Garden,677,37,1224,Prime Distributors,223.81,394.89,131,29,2025-08-05,In Stock\
+PROD_000025,Garden Rake,Home & Garden,113,28,1377,Global Supply Co,265.83,484.96,101,14,2025-08-22,In Stock\
+PROD_000026,MacBook Pro,Electronics,308,23,639,Supplier C,148.28,223.01,191,110,2025-08-14,In Stock\
+PROD_000027,Denim Jeans,Clothing,389,44,910,Prime Distributors,281.57,685.81,18,101,2025-08-18,In Stock\
+PROD_000028,Car Battery,Automotive,446,11,966,Supplier A,431.74,983.85,103,106,2025-08-11,In Stock\
+PROD_000029,Dining Table,Home & Garden,414,11,1129,Supplier B,401.65,944.2,176,92,2025-08-03,In Stock\
+PROD_000030,iPad Air,Electronics,864,16,1163,Global Supply Co,296.49,649.53,79,86,2025-08-17,In Stock\
+PROD_000031,Summer Dress,Clothing,797,20,925,Prime Distributors,318.45,701.24,198,89,2025-08-23,In Stock\
+PROD_000032,Coffee Maker,Home & Garden,241,16,590,Supplier C,102.65,238.57,194,19,2025-08-05,In Stock\
+PROD_000033,Leather Belt,Clothing,505,39,1327,Prime Distributors,381.14,786.34,144,82,2025-07-31,In Stock\
+PROD_000034,Wrench Set,Automotive,154,38,343,Global Supply Co,223.89,406.31,151,14,2025-08-21,In Stock\
+PROD_000035,LED Bulbs,Home & Garden,75,29,1070,Global Supply Co,23.62,45.51,19,23,2025-08-20,In Stock\
+PROD_000036,Protein Powder,Sports,519,34,1042,Prime Distributors,279.39,739.29,10,115,2025-08-01,In Stock\
+PROD_000037,Dash Cam,Automotive,667,22,1046,Prime Distributors,240.44,374.24,115,26,2025-08-28,In Stock\
+PROD_000038,Wrench Set,Automotive,731,15,1297,Supplier B,24.38,61.02,134,133,2025-08-15,In Stock\
+PROD_000039,Gym Wear,Sports,372,33,1001,Global Supply Co,207.34,388.81,13,85,2025-08-10,In Stock\
+PROD_000040,AirPods Pro,Electronics,96,45,937,Supplier C,129.74,356.48,154,38,2025-07-31,In Stock\
+PROD_000041,Dining Table,Home & Garden,596,19,1004,Supplier C,484.01,1203.93,33,21,2025-08-17,In Stock\
+PROD_000042,LED Bulbs,Home & Garden,385,31,696,Prime Distributors,51.26,125.06,92,4,2025-08-13,In Stock\
+PROD_000043,Wall Art,Home & Garden,184,23,933,Global Supply Co,100.04,300.12,19,75,2025-08-25,In Stock\
+PROD_000044,Car Battery,Automotive,519,44,1424,Prime Distributors,23.69,44.36,158,33,2025-08-05,In Stock\
+PROD_000045,Sports Bag,Sports,157,20,577,Prime Distributors,405.48,641.23,11,105,2025-08-15,In Stock\
+PROD_000046,Coffee Maker,Home & Garden,992,38,1354,Supplier C,377.43,993.57,136,61,2025-08-22,In Stock\
+PROD_000047,Garden Rake,Home & Garden,925,22,1351,Prime Distributors,492.3,1026.37,199,97,2025-08-20,In Stock\
+PROD_000048,Protein Powder,Sports,428,20,1314,Supplier B,401.62,616.6,13,123,2025-08-21,In Stock\
+PROD_000049,Wrench Set,Automotive,567,16,1345,Prime Distributors,426.33,760.83,41,69,2025-08-05,In Stock\
+PROD_000050,Wellness Book,Books,150,37,387,Supplier B,409.27,1147.54,6,106,2025-07-31,In Stock\
+PROD_000051,iPad Air,Electronics,514,33,805,Global Supply Co,497.29,963.43,81,25,2025-08-29,In Stock\
+PROD_000052,Wrench Set,Automotive,810,19,1000,Supplier A,147.01,398.48,35,120,2025-08-07,In Stock\
+PROD_000053,Wellness Book,Books,5,15,93,Supplier C,111.75,173.68,155,135,2025-08-06,Low Stock\
+PROD_000054,Mystery Novel,Books,794,28,1087,Supplier C,65.31,111.38,159,117,2025-08-09,In Stock\
+PROD_000055,iPhone 15,Electronics,856,41,1454,Supplier A,317.82,723.86,36,74,2025-08-07,In Stock\
+PROD_000056,Mystery Novel,Books,629,32,925,Prime Distributors,211.2,513.1,134,92,2025-08-27,In Stock\
+PROD_000057,Canon Camera,Electronics,557,42,1412,Prime Distributors,279.31,548.5,11,99,2025-08-14,In Stock\
+PROD_000058,Wall Art,Home & Garden,765,11,1180,Supplier A,175.68,447.28,26,148,2025-08-09,In Stock\
+PROD_000059,Shampoo,Beauty,136,12,907,Prime Distributors,172.58,412.94,199,118,2025-08-03,In Stock\
+PROD_000060,Perfume,Beauty,646,21,834,Supplier A,359.44,1043.86,75,51,2025-08-28,In Stock\
+PROD_000061,MacBook Pro,Electronics,907,12,1280,Supplier C,260.11,775.52,121,64,2025-08-12,In Stock\
+PROD_000062,Apple Watch,Electronics,195,28,976,Supplier A,433.57,808.29,94,111,2025-08-26,In Stock\
+PROD_000063,Celebrity Biography,Books,916,34,1313,Supplier B,250.62,537.78,132,68,2025-07-31,In Stock\
+PROD_000064,Car Battery,Automotive,744,37,874,Global Supply Co,303.21,818.05,75,82,2025-08-12,In Stock\
+PROD_000065,iPhone 15,Electronics,335,28,1012,Global Supply Co,303.3,614.0,113,89,2025-08-07,In Stock\
+PROD_000066,Mystery Novel,Books,744,32,1423,Global Supply Co,140.9,417.92,19,103,2025-08-28,In Stock\
+PROD_000067,LED Bulbs,Home & Garden,820,20,901,Supplier B,425.09,1042.64,8,32,2025-08-15,In Stock\
+PROD_000068,MacBook Pro,Electronics,797,33,1217,Global Supply Co,474.99,643.64,173,115,2025-08-25,In Stock\
+PROD_000069,Wall Art,Home & Garden,454,14,1091,Supplier B,267.08,527.93,71,63,2025-08-09,In Stock\
+PROD_000070,iPhone 15,Electronics,753,21,1314,Prime Distributors,196.56,443.21,198,66,2025-08-21,In Stock\
+PROD_000071,Perfume,Beauty,219,49,853,Global Supply Co,104.09,159.33,115,44,2025-08-27,In Stock\
+PROD_000072,Perfume,Beauty,89,30,850,Supplier A,277.25,497.28,40,44,2025-08-20,In Stock\
+PROD_000073,Wrench Set,Automotive,520,24,694,Supplier B,397.07,675.99,6,92,2025-08-14,In Stock\
+PROD_000074,Protein Powder,Sports,377,39,692,Prime Distributors,442.7,624.99,183,122,2025-08-17,In Stock\
+PROD_000075,Sports Bag,Sports,787,36,1425,Supplier A,67.04,123.28,115,119,2025-08-27,In Stock\
+PROD_000076,Makeup Brush,Beauty,352,18,774,Supplier B,219.15,624.19,31,132,2025-08-28,In Stock\
+PROD_000077,Summer Dress,Clothing,168,20,878,Supplier B,176.28,511.13,72,20,2025-08-01,In Stock\
+PROD_000078,Coffee Maker,Home & Garden,650,45,981,Supplier B,314.39,737.1,128,43,2025-08-27,In Stock\
+PROD_000079,Protein Powder,Sports,157,20,1485,Prime Distributors,172.12,494.1,7,20,2025-08-28,In Stock\
+PROD_000080,Apple Watch,Electronics,789,46,1110,Supplier B,384.64,772.43,7,127,2025-08-09,In Stock\
+PROD_000081,Makeup Brush,Beauty,296,29,1335,Supplier B,403.32,993.98,116,18,2025-08-20,In Stock\
+PROD_000082,Face Cream,Beauty,161,38,1062,Global Supply Co,234.9,441.22,80,81,2025-08-25,In Stock\
+PROD_000083,Shampoo,Beauty,998,35,1114,Supplier C,259.92,384.81,119,31,2025-08-22,In Stock\
+PROD_000084,Garden Rake,Home & Garden,253,19,501,Supplier A,148.65,290.32,107,63,2025-08-10,In Stock\
+PROD_000085,Floor Mats,Automotive,833,30,1474,Supplier C,98.97,155.47,119,127,2025-08-13,In Stock\
+PROD_000086,Garden Rake,Home & Garden,23,15,878,Prime Distributors,231.33,395.4,90,12,2025-08-11,In Stock\
+PROD_000087,AirPods Pro,Electronics,506,48,1459,Global Supply Co,146.45,192.42,110,34,2025-08-26,In Stock\
+PROD_000088,Wall Art,Home & Garden,782,35,1206,Supplier A,203.29,461.36,92,141,2025-08-23,In Stock\
+PROD_000089,Dining Table,Home & Garden,395,42,1367,Prime Distributors,143.46,427.72,156,30,2025-08-08,In Stock\
+PROD_000090,Cotton T-Shirt,Clothing,403,33,1147,Prime Distributors,469.78,1213.65,154,130,2025-08-23,In Stock\
+PROD_000091,Wellness Book,Books,41,12,170,Supplier B,358.23,955.31,116,38,2025-08-13,In Stock\
+PROD_000092,Protein Powder,Sports,143,30,1448,Supplier C,85.44,254.96,76,86,2025-08-06,In Stock\
+PROD_000093,Protein Powder,Sports,545,41,1320,Prime Distributors,153.4,412.15,84,28,2025-08-18,In Stock\
+PROD_000094,Wellness Book,Books,315,50,419,Prime Distributors,239.92,706.33,198,148,2025-08-04,In Stock\
+PROD_000095,Gym Wear,Sports,738,13,1385,Global Supply Co,89.4,211.82,198,97,2025-08-10,In Stock\
+PROD_000096,Leather Belt,Clothing,248,12,1470,Supplier A,99.44,203.83,38,105,2025-08-16,In Stock\
+PROD_000097,Lipstick,Beauty,420,42,1435,Supplier A,354.36,773.13,83,122,2025-08-12,In Stock\
+PROD_000098,Sports Bag,Sports,321,21,1312,Prime Distributors,174.45,331.85,184,67,2025-08-05,In Stock\
+PROD_000099,Sports Bag,Sports,196,25,817,Prime Distributors,152.76,443.08,197,73,2025-08-20,In Stock\
+PROD_000100,Lipstick,Beauty,706,41,1080,Global Supply Co,177.66,512.96,184,70,2025-08-04,In Stock}

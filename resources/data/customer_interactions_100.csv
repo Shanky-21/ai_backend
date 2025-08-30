@@ -1,0 +1,101 @@
+interaction_id,customer_id,interaction_date,interaction_type,reason,priority,duration_minutes,response_time_hours,resolution_status,customer_satisfaction,agent_id,follow_up_required\
+INT_00000001,CUST_000032,2025-04-04 06:00:33,In-Person,Billing Issue,High,40.0,,Escalated,,Agent_002,Yes\
+INT_00000002,CUST_000021,2025-04-04 06:00:33,Chat,Product Recommendation,Medium,30.0,,Escalated,,Agent_004,Yes\
+INT_00000003,CUST_000070,2024-11-27 06:00:33,In-Person,Return Request,Medium,23.0,,Resolved,5.0,Agent_005,Yes\
+INT_00000004,CUST_000136,2025-08-04 06:00:33,Email,Technical Support,High,,34.6,Resolved,1.0,Agent_004,Yes\
+INT_00000005,CUST_000036,2024-09-15 06:00:33,Phone Call,Complaint,Medium,31.0,,Closed,,Agent_004,No\
+INT_00000006,CUST_000074,2025-03-18 06:00:33,Support Ticket,Product Inquiry,Low,,43.9,Resolved,5.0,Agent_002,Yes\
+INT_00000007,CUST_000046,2025-01-28 06:00:33,Phone Call,Billing Issue,Low,36.0,,Pending,,Agent_003,Yes\
+INT_00000008,CUST_000146,2025-03-30 06:00:33,In-Person,Order Status,Urgent,36.0,,Escalated,,Agent_004,Yes\
+INT_00000009,CUST_000120,2024-12-14 06:00:33,Chat,Technical Support,Urgent,13.0,,Escalated,,Agent_002,No\
+INT_00000010,CUST_000004,2025-05-26 06:00:33,Support Ticket,General Question,Medium,,8.8,Escalated,,Agent_005,No\
+INT_00000011,CUST_000132,2025-01-23 06:00:33,Chat,Order Status,Urgent,22.0,,Resolved,2.0,Agent_002,No\
+INT_00000012,CUST_000002,2025-04-24 06:00:33,Chat,Billing Issue,High,17.0,,Closed,,Agent_003,No\
+INT_00000013,CUST_000147,2024-11-04 06:00:33,Phone Call,Return Request,Low,28.0,,Pending,,Agent_001,No\
+INT_00000014,CUST_000041,2025-03-25 06:00:33,Social Media,Return Request,Medium,13.0,,Resolved,3.0,Agent_003,Yes\
+INT_00000015,CUST_000123,2025-06-22 06:00:33,Email,Product Recommendation,Urgent,,36.5,Escalated,,Agent_004,Yes\
+INT_00000016,CUST_000021,2025-04-25 06:00:33,In-Person,Product Recommendation,Low,48.0,,Escalated,,Agent_001,Yes\
+INT_00000017,CUST_000130,2024-11-22 06:00:33,Email,Complaint,Urgent,,6.0,Pending,,Agent_003,Yes\
+INT_00000018,CUST_000126,2024-11-04 06:00:33,Phone Call,Product Recommendation,Urgent,8.0,,Closed,,Agent_002,No\
+INT_00000019,CUST_000015,2024-11-14 06:00:33,In-Person,Product Recommendation,Urgent,58.0,,Escalated,,Agent_001,No\
+INT_00000020,CUST_000056,2025-08-28 06:00:33,In-Person,Order Status,Low,17.0,,Closed,,Agent_003,Yes\
+INT_00000021,CUST_000121,2025-07-25 06:00:33,Phone Call,Return Request,Urgent,31.0,,Pending,,Agent_002,No\
+INT_00000022,CUST_000115,2025-02-15 06:00:33,Social Media,Billing Issue,Low,3.0,,Pending,,Agent_003,Yes\
+INT_00000023,CUST_000101,2024-11-27 06:00:33,In-Person,Complaint,Urgent,29.0,,Resolved,1.0,Agent_003,No\
+INT_00000024,CUST_000098,2024-11-30 06:00:33,Email,Technical Support,Medium,,13.6,Closed,,Agent_003,Yes\
+INT_00000025,CUST_000108,2025-08-13 06:00:33,In-Person,Product Inquiry,Low,30.0,,Pending,,Agent_001,Yes\
+INT_00000026,CUST_000013,2025-01-13 06:00:33,Email,Product Inquiry,Medium,,26.1,Closed,,Agent_004,Yes\
+INT_00000027,CUST_000129,2025-06-19 06:00:33,Chat,Technical Support,High,28.0,,Escalated,,Agent_005,Yes\
+INT_00000028,CUST_000037,2025-03-28 06:00:33,Support Ticket,Technical Support,High,,3.4,Closed,,Agent_003,Yes\
+INT_00000029,CUST_000110,2024-10-13 06:00:33,In-Person,Product Recommendation,High,18.0,,Escalated,,Agent_004,No\
+INT_00000030,CUST_000039,2025-02-01 06:00:33,Chat,Billing Issue,Medium,15.0,,Closed,,Agent_002,No\
+INT_00000031,CUST_000037,2024-09-01 06:00:33,Social Media,Product Inquiry,Medium,10.0,,Closed,,Agent_004,No\
+INT_00000032,CUST_000066,2025-04-27 06:00:33,Email,General Question,Low,,25.9,Resolved,4.0,Agent_003,Yes\
+INT_00000033,CUST_000069,2025-08-03 06:00:33,Social Media,Product Inquiry,Medium,15.0,,Resolved,2.0,Agent_005,No\
+INT_00000034,CUST_000086,2025-05-15 06:00:33,Chat,Product Inquiry,Urgent,16.0,,Pending,,Agent_001,Yes\
+INT_00000035,CUST_000053,2024-09-07 06:00:33,Social Media,Technical Support,Urgent,10.0,,Escalated,,Agent_003,No\
+INT_00000036,CUST_000092,2024-11-29 06:00:33,Chat,Return Request,Low,21.0,,Closed,,Agent_004,No\
+INT_00000037,CUST_000053,2025-03-19 06:00:33,Chat,General Question,Medium,23.0,,Resolved,5.0,Agent_002,Yes\
+INT_00000038,CUST_000142,2025-04-18 06:00:33,In-Person,Billing Issue,High,33.0,,Pending,,Agent_002,Yes\
+INT_00000039,CUST_000146,2025-02-16 06:00:33,Email,Product Recommendation,Urgent,,46.4,Escalated,,Agent_003,No\
+INT_00000040,CUST_000044,2025-01-06 06:00:33,Support Ticket,General Question,Urgent,,9.2,Pending,,Agent_002,Yes\
+INT_00000041,CUST_000009,2024-12-04 06:00:33,Phone Call,Product Inquiry,Medium,5.0,,Closed,,Agent_002,Yes\
+INT_00000042,CUST_000039,2024-09-01 06:00:33,Phone Call,Technical Support,Low,37.0,,Closed,,Agent_003,No\
+INT_00000043,CUST_000125,2024-09-26 06:00:33,Phone Call,Product Inquiry,Low,39.0,,Closed,,Agent_001,No\
+INT_00000044,CUST_000074,2024-11-28 06:00:33,Phone Call,Billing Issue,Medium,16.0,,Resolved,1.0,Agent_005,Yes\
+INT_00000045,CUST_000135,2025-05-23 06:00:33,Chat,General Question,High,18.0,,Closed,,Agent_001,No\
+INT_00000046,CUST_000145,2025-01-06 06:00:33,Email,Technical Support,Low,,4.9,Escalated,,Agent_001,No\
+INT_00000047,CUST_000142,2025-02-17 06:00:33,Social Media,Product Inquiry,Urgent,12.0,,Resolved,2.0,Agent_001,No\
+INT_00000048,CUST_000085,2024-10-03 06:00:33,In-Person,Order Status,Urgent,48.0,,Resolved,2.0,Agent_002,No\
+INT_00000049,CUST_000020,2025-08-06 06:00:33,Support Ticket,Return Request,Low,,46.2,Resolved,2.0,Agent_003,Yes\
+INT_00000050,CUST_000102,2024-08-30 06:00:33,Phone Call,Return Request,Urgent,15.0,,Pending,,Agent_005,No\
+INT_00000051,CUST_000036,2025-02-14 06:00:33,Support Ticket,Order Status,Low,,21.3,Escalated,,Agent_001,Yes\
+INT_00000052,CUST_000102,2025-03-08 06:00:33,Chat,Product Inquiry,Urgent,30.0,,Escalated,,Agent_004,Yes\
+INT_00000053,CUST_000142,2025-02-28 06:00:33,Social Media,Billing Issue,High,4.0,,Closed,,Agent_001,Yes\
+INT_00000054,CUST_000022,2025-07-23 06:00:33,Chat,Complaint,High,22.0,,Pending,,Agent_004,No\
+INT_00000055,CUST_000024,2025-07-06 06:00:33,Phone Call,Return Request,Low,33.0,,Escalated,,Agent_003,Yes\
+INT_00000056,CUST_000048,2025-07-16 06:00:33,Social Media,Product Recommendation,Low,10.0,,Closed,,Agent_001,Yes\
+INT_00000057,CUST_000142,2025-03-01 06:00:33,Phone Call,General Question,Urgent,29.0,,Resolved,3.0,Agent_004,Yes\
+INT_00000058,CUST_000063,2024-11-16 06:00:33,In-Person,Complaint,Medium,58.0,,Closed,,Agent_002,No\
+INT_00000059,CUST_000069,2025-03-28 06:00:33,Social Media,Complaint,High,3.0,,Pending,,Agent_004,No\
+INT_00000060,CUST_000124,2025-03-29 06:00:33,Phone Call,General Question,Medium,21.0,,Pending,,Agent_004,No\
+INT_00000061,CUST_000035,2025-07-06 06:00:33,Chat,Product Inquiry,Urgent,22.0,,Escalated,,Agent_005,No\
+INT_00000062,CUST_000086,2025-01-16 06:00:33,Social Media,Complaint,Medium,6.0,,Escalated,,Agent_005,No\
+INT_00000063,CUST_000046,2025-03-22 06:00:33,Social Media,General Question,Medium,6.0,,Closed,,Agent_005,No\
+INT_00000064,CUST_000072,2025-02-18 06:00:33,Social Media,General Question,Medium,3.0,,Pending,,Agent_005,Yes\
+INT_00000065,CUST_000054,2025-01-05 06:00:33,Social Media,Return Request,Medium,15.0,,Resolved,4.0,Agent_004,No\
+INT_00000066,CUST_000065,2025-04-28 06:00:33,Support Ticket,Complaint,Low,,21.8,Closed,,Agent_004,No\
+INT_00000067,CUST_000103,2024-11-04 06:00:33,In-Person,Billing Issue,Low,49.0,,Resolved,3.0,Agent_005,Yes\
+INT_00000068,CUST_000091,2025-04-24 06:00:33,Email,Product Inquiry,Urgent,,5.5,Closed,,Agent_003,Yes\
+INT_00000069,CUST_000057,2025-04-19 06:00:33,In-Person,Technical Support,Urgent,43.0,,Escalated,,Agent_004,Yes\
+INT_00000070,CUST_000007,2025-03-06 06:00:33,Social Media,Order Status,Low,6.0,,Closed,,Agent_001,Yes\
+INT_00000071,CUST_000080,2025-03-04 06:00:33,Chat,Product Recommendation,Urgent,16.0,,Closed,,Agent_003,Yes\
+INT_00000072,CUST_000116,2025-01-17 06:00:33,Chat,Order Status,High,19.0,,Resolved,1.0,Agent_001,Yes\
+INT_00000073,CUST_000043,2024-09-17 06:00:33,Support Ticket,Technical Support,Medium,,16.2,Pending,,Agent_005,No\
+INT_00000074,CUST_000060,2025-01-05 06:00:33,Social Media,Complaint,Low,4.0,,Closed,,Agent_004,Yes\
+INT_00000075,CUST_000110,2025-01-11 06:00:33,Social Media,Product Inquiry,High,13.0,,Pending,,Agent_002,Yes\
+INT_00000076,CUST_000027,2024-11-07 06:00:33,In-Person,Complaint,Urgent,38.0,,Escalated,,Agent_002,Yes\
+INT_00000077,CUST_000126,2025-04-17 06:00:33,In-Person,General Question,Urgent,53.0,,Closed,,Agent_005,Yes\
+INT_00000078,CUST_000091,2025-03-04 06:00:33,Social Media,Complaint,Low,15.0,,Escalated,,Agent_005,Yes\
+INT_00000079,CUST_000031,2025-03-22 06:00:33,Email,Return Request,Medium,,24.8,Resolved,2.0,Agent_003,No\
+INT_00000080,CUST_000036,2024-10-28 06:00:33,In-Person,Billing Issue,Medium,42.0,,Pending,,Agent_004,Yes\
+INT_00000081,CUST_000074,2024-12-22 06:00:33,Email,Complaint,Low,,41.6,Escalated,,Agent_004,Yes\
+INT_00000082,CUST_000035,2024-12-24 06:00:33,Email,Billing Issue,Urgent,,20.2,Closed,,Agent_004,No\
+INT_00000083,CUST_000043,2024-12-22 06:00:33,Phone Call,Product Inquiry,High,19.0,,Escalated,,Agent_001,Yes\
+INT_00000084,CUST_000074,2024-11-27 06:00:33,Email,Product Recommendation,Low,,27.7,Closed,,Agent_005,No\
+INT_00000085,CUST_000094,2024-11-24 06:00:33,In-Person,Product Inquiry,Low,43.0,,Pending,,Agent_004,Yes\
+INT_00000086,CUST_000009,2025-03-30 06:00:33,Social Media,Return Request,Medium,7.0,,Resolved,4.0,Agent_001,Yes\
+INT_00000087,CUST_000090,2024-11-01 06:00:33,Support Ticket,Billing Issue,Medium,,37.8,Pending,,Agent_005,Yes\
+INT_00000088,CUST_000146,2025-07-30 06:00:33,Chat,Return Request,High,29.0,,Pending,,Agent_003,No\
+INT_00000089,CUST_000069,2024-11-09 06:00:33,In-Person,Order Status,High,23.0,,Closed,,Agent_001,Yes\
+INT_00000090,CUST_000034,2024-09-04 06:00:33,Email,Complaint,Urgent,,23.7,Escalated,,Agent_002,No\
+INT_00000091,CUST_000107,2024-10-12 06:00:33,Social Media,Product Recommendation,High,3.0,,Resolved,4.0,Agent_005,No\
+INT_00000092,CUST_000125,2025-01-09 06:00:33,Chat,Product Inquiry,Low,12.0,,Closed,,Agent_003,No\
+INT_00000093,CUST_000110,2025-05-10 06:00:33,Email,Product Recommendation,High,,16.5,Escalated,,Agent_003,Yes\
+INT_00000094,CUST_000125,2024-11-13 06:00:33,Chat,Product Inquiry,Low,11.0,,Resolved,4.0,Agent_001,Yes\
+INT_00000095,CUST_000117,2025-01-16 06:00:33,Phone Call,Billing Issue,Medium,17.0,,Pending,,Agent_003,No\
+INT_00000096,CUST_000093,2025-07-13 06:00:33,Chat,Order Status,Urgent,21.0,,Pending,,Agent_001,No\
+INT_00000097,CUST_000060,2024-09-05 06:00:33,Social Media,Order Status,Urgent,13.0,,Resolved,1.0,Agent_002,Yes\
+INT_00000098,CUST_000058,2025-06-23 06:00:33,In-Person,Product Recommendation,Urgent,15.0,,Resolved,3.0,Agent_001,Yes\
+INT_00000099,CUST_000019,2024-12-28 06:00:33,Email,Billing Issue,High,,18.0,Resolved,1.0,Agent_001,No\
+INT_00000100,CUST_000098,2025-06-20 06:00:33,Email,Complaint,Low,,29.5,Resolved,5.0,Agent_005,Yes}
